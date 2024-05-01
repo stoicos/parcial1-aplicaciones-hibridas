@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videoclub</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        body{
+            background: #C8D8FF;
+            background: -moz-radial-gradient(center, #C8D8FF 0%, #EBF2FF 60%, #FFFFFF 100%);
+            background: -webkit-radial-gradient(center, #C8D8FF 0%, #EBF2FF 60%, #FFFFFF 100%);
+            background: radial-gradient(ellipse at center, #C8D8FF 0%, #EBF2FF 60%, #FFFFFF 100%);
+        }
+        ul {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem;
+            width: 30rem;
+            list-style: none;
+        }
+        span {
+            font-weight: bold;
+        }
+        .verde {
+            color: rgb(75, 175, 75);
+        }
+        .amarillo {
+            color: rgb(202, 202, 116);
+        }
+        .azul {
+            color: rgb(102, 102, 204);
+        }
+        .rojo {
+            color: rgb(214, 101, 101);
+        }
+        footer {
+            background-color: rgb(25, 25, 53);
+            padding: 1rem;
+            color: white;
+        }
+        h1, h2, h3 {
+            color: rgb(25, 25, 53);
+        }
+        h1{
+            font-weight: 400;
+        }
+        .bajada{
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: -.5rem;
+            font-size: 3rem;
+            letter-spacing: -1.6px;
+        }
+        .subtitulo{
+            text-align: center;
+            margin-bottom: 6rem; 
+            font-size: 1.5rem;
+        }
+        .container{
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎞Videoclub</h1>
+        <h2 class="bajada">API de películas y directores de cine</h2>
+        <p class="subtitulo">Creada en Node Express y Mongo</p>
+        <p>Requiere una creación y autenticación de usuario para acceder a más funcionalidades</p>
+        <p>Dentro de las funcionalidades que puede acceder el usuario está la creación, modificación y eliminación de documentos</p>
+        <h2>Lista de endpoints:</h2>
+        <h3># Películas</h3>
+        <ul>
+            <li><span class="verde">GET</span> 127.0.0.1:3000/movies/</li>
+            <li><span class="amarillo">POST</span> 127.0.0.1:3000/movies/:id</li>
+            <li><span class="azul">PUT</span> 127.0.0.1:3000/movies/:id</li>
+            <li><span class="rojo">DELETE</span> 127.0.0.1:3000/movies/:id</li>
+        </ul>
+        <h3># Directores</h3>
+        <ul>
+            <li><span class="verde">GET</span> 127.0.0.1:3000/directors/</li>
+            <li><span class="amarillo">POST</span> 127.0.0.1:3000/directors/</li>
+            <li><span class="azul">PUT</span> 127.0.0.1:3000/directors/:id</li>
+            <li><span class="rojo">DELETE</span> 127.0.0.1:3000/directors/:id</li>
+        </ul>
+        <h3># Usuarios</h3>
+        <ul>
+            <li><span class="verde">GET</span> 127.0.0.1:3000/users/</li>
+            <li><span class="amarillo">POST</span> 127.0.0.1:3000/users/</li>
+            <li><span class="azul">PUT</span> 127.0.0.1:3000/users/:id</li>
+            <li><span class="rojo">DELETE</span> 127.0.0.1:3000/users/:id</li>
+        </ul>
+
+    </div>
+    <footer>
+        <p>Marcelo Daniel Anavia, Aplicaciones Híbridas, Camila Marcos Galban, DWN4AV 2024</p>
+    </footer>
+</body>
+</html>
+
