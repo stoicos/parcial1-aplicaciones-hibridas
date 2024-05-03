@@ -8,12 +8,37 @@ async function getMovies() {
 }
 
 async function getMovieByTitle(req) {
-    let movie = await Movie.findOne({ title: { $regex: req.params.title, $options: 'i' } });
+    let movie = await Movie.findOne({ title: { $regex: req.params.title, $options: 'i' } })
+        .find({ status: true })
+        .populate('director', 'name surname -_id')
     return movie
 }
 
 async function getMovieById(req) {
-    let movie = await Movie.findOne({ id : req.params.id });
+    let movie = await Movie.findOne({ id : req.params.id })
+        .find({ status: true })
+        .populate('director', 'name surname -_id')
+    return movie
+}
+
+async function getMoviesByYearRange(min, max) {
+    let movies = await Movie.find({ year: { $gte: min, $lte: max } })
+        .find({ status: true })
+        .populate('director', 'name surname -_id')
+    return movies
+}
+
+async function getSortedMovies() {
+    let movie = await Movie.find().sort({title: 1})
+        .find({ status: true })
+        .populate('director', 'name surname -_id')
+    return movie
+}
+
+async function getMoviesByPages(req) {
+    let movie = await Movie.find().limit(req.params.pages)
+        .find({ status: true })
+        .populate('director', 'name surname -_id')
     return movie
 }
 
@@ -50,4 +75,4 @@ async function deactivateMovie(id) {
     return deactivatedMovie
 }
 
-export { getMovies, createMovie, updateMovie, deactivateMovie, getMovieByTitle, getMovieById }
+export { getMovies, createMovie, updateMovie, deactivateMovie, getMovieByTitle, getMovieById, getMoviesByYearRange, getSortedMovies, getMoviesByPages }

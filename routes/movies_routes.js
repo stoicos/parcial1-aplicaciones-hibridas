@@ -1,5 +1,5 @@
 import express from "express"
-import { createMovie, deactivateMovie, getMovies, updateMovie, getMovieByTitle, getMovieById } from "../controllers/movies_controller.js"
+import { createMovie, deactivateMovie, getMovies, updateMovie, getMovieByTitle, getMovieById, getMoviesByYearRange, getSortedMovies, getMoviesByPages } from "../controllers/movies_controller.js"
 import Joi from "joi"
 import verifyToken from "../middlewares/auth.js"
 
@@ -27,6 +27,51 @@ route.get('/', (req, res) => {
         .catch((error) => {
             res.status(400).json(error)
         })
+})
+
+route.get('/pages/:pages', (req, res) => {
+    let result = getMoviesByPages(req)
+    result
+        .then((movies) => {
+            res.status(200).json(movies)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/year', (req, res) => {
+    let result = getSortedMovies()
+    result
+        .then((movies) => {
+            res.status(200).json(movies)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/year', (req, res) => {
+    
+    let minYear = Number(req.query.minyear)
+    let maxYear = Number(req.query.maxyear)
+
+    if(minYear > maxYear) {
+        res.status(400).json({error: 'El año minimo no puede ser más grande que el máximo'})
+    } else {
+        let result = getMoviesByYearRange(minYear, maxYear)
+        result
+            .then((movies) => {
+                if(movies.length === 0) {
+                    res.status(404).json({error: 'No se encontraron peliculas en esos años'})
+                } else {
+                    res.status(200).json(movies)
+                }
+            })
+            .catch((error) => {
+                res.status(400).json(error)
+            })
+    }
 })
 
 route.get('/:id', (req, res) => {
