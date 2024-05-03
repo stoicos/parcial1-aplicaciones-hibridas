@@ -1,5 +1,5 @@
 import express from "express"
-import { createMovie, deactivateMovie, getMovies, updateMovie } from "../controllers/movies_controller.js"
+import { createMovie, deactivateMovie, getMovies, updateMovie, getMovieByTitle } from "../controllers/movies_controller.js"
 import Joi from "joi"
 import verifyToken from "../middlewares/auth.js"
 
@@ -20,6 +20,18 @@ const schema = Joi.object({
 
 route.get('/', (req, res) => {
     let result = getMovies()
+    result
+        .then((movies) => {
+            res.status(200).json(movies)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/:title', (req, res) => {
+    // console.log(req.params)
+    let result = getMovieByTitle(req)
     result
         .then((movies) => {
             res.status(200).json(movies)

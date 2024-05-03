@@ -1,5 +1,5 @@
 import express from "express"
-import { createUser, getUsers, updateUser, deactivateUser } from "../controllers/users_controller.js";
+import { createUser, getUsers, updateUser, deactivateUser, getUserByName } from "../controllers/users_controller.js";
 import Joi from "joi"
 import verifyToken from "../middlewares/auth.js";
 
@@ -18,8 +18,19 @@ const schema = Joi.object({
 
 })
 
-route.get('/', verifyToken, (req, res) => {
+route.get('/', (req, res) => {
     let result = getUsers();
+    result
+        .then((users) => {
+            res.status(200).json(users)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/:name', (req, res) => {
+    let result = getUserByName(req);
     result
         .then((users) => {
             res.status(200).json(users)

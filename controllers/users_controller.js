@@ -1,12 +1,17 @@
 import User from "../models/users_model.js"
 import bcrypt from "bcrypt"
 
-async function getUsers(){
+async function getUsers() {
     let users = await User.find({status:true});
     return users;
 }
 
-async function createUser(body){
+async function getUserByName(req) {
+    let user = await User.findOne({ name: { $regex: req.params.name, $options: 'i' } });
+    return user
+}
+
+async function createUser(body) {
    let user = new User({
         name: body.name,
         password: bcrypt.hashSync(body.password, 10),
@@ -38,4 +43,4 @@ async function deactivateUser(id) {
     return deactivatedUser
 }
 
-export { getUsers, createUser, updateUser, deactivateUser}
+export { getUsers, createUser, updateUser, deactivateUser, getUserByName}

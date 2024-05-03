@@ -1,5 +1,5 @@
 import express from "express"
-import { createDirector, deactivateDirector, getDirectors, updateDirector } from "../controllers/directors_controller.js"
+import { createDirector, deactivateDirector, getDirectors, updateDirector, getDirectorByName } from "../controllers/directors_controller.js"
 import Joi from "joi"
 import verifyToken from "../middlewares/auth.js"
 
@@ -17,6 +17,17 @@ const schema = Joi.object({
 
 route.get('/', (req, res) => {
     let result = getDirectors()
+    result
+        .then((director) => {
+            res.status(200).json(director)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/:name', (req, res) => {
+    let result = getDirectorByName(req)
     result
         .then((director) => {
             res.status(200).json(director)

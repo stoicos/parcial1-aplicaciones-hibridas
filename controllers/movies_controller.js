@@ -7,6 +7,11 @@ async function getMovies() {
         return movies
 }
 
+async function getMovieByTitle(req) {
+    let movie = await Movie.findOne({ title: { $regex: req.params.title, $options: 'i' } });
+    return movie
+}
+
 async function createMovie(req) {
     let newMovie = new Movie({
         title: req.body.title,
@@ -40,4 +45,4 @@ async function deactivateMovie(id) {
     return deactivatedMovie
 }
 
-export { getMovies, createMovie, updateMovie, deactivateMovie }
+export { getMovies, createMovie, updateMovie, deactivateMovie, getMovieByTitle }
