@@ -1,5 +1,5 @@
 import express from "express"
-import { createUser, getUsers, updateUser, deactivateUser, getUserByName } from "../controllers/users_controller.js";
+import { createUser, getUsers, updateUser, deactivateUser, getUserByName, getUserById } from "../controllers/users_controller.js";
 import Joi from "joi"
 import verifyToken from "../middlewares/auth.js";
 
@@ -31,6 +31,17 @@ route.get('/', (req, res) => {
 
 route.get('/:name', (req, res) => {
     let result = getUserByName(req);
+    result
+        .then((users) => {
+            res.status(200).json(users)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/:id', (req, res) => {
+    let result = getUserById(req);
     result
         .then((users) => {
             res.status(200).json(users)

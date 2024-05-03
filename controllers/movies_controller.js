@@ -12,6 +12,11 @@ async function getMovieByTitle(req) {
     return movie
 }
 
+async function getMovieById(req) {
+    let movie = await Movie.findOne({ id : req.params.id });
+    return movie
+}
+
 async function createMovie(req) {
     let newMovie = new Movie({
         title: req.body.title,
@@ -45,4 +50,4 @@ async function deactivateMovie(id) {
     return deactivatedMovie
 }
 
-export { getMovies, createMovie, updateMovie, deactivateMovie, getMovieByTitle }
+export { getMovies, createMovie, updateMovie, deactivateMovie, getMovieByTitle, getMovieById }

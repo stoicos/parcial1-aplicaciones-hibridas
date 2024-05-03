@@ -11,6 +11,11 @@ async function getUserByName(req) {
     return user
 }
 
+async function getUserById(req) {
+    let user = await User.findOne({ _id: ObjectId(req.params.id) })
+    return user
+}
+
 async function createUser(body) {
    let user = new User({
         name: body.name,
@@ -43,4 +48,4 @@ async function deactivateUser(id) {
     return deactivatedUser
 }
 
-export { getUsers, createUser, updateUser, deactivateUser, getUserByName}
+export { getUsers, createUser, updateUser, deactivateUser, getUserByName, getUserById}

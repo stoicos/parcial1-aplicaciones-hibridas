@@ -10,6 +10,11 @@ async function getDirectorByName(req) {
     return director
 }
 
+async function getDirectorById(req) {
+    let director = await Director.findOne({ id : req.params.id });
+    return director
+}
+
 async function createDirector(req) {
     let newDirector = new Director({
         name: req.body.name,
@@ -40,4 +45,4 @@ async function deactivateDirector(id) {
     return deactivatedDirector
 }
 
-export { getDirectors, createDirector, updateDirector, deactivateDirector, getDirectorByName }
+export { getDirectors, createDirector, updateDirector, deactivateDirector, getDirectorByName, getDirectorById }

@@ -1,5 +1,5 @@
 import express from "express"
-import { createDirector, deactivateDirector, getDirectors, updateDirector, getDirectorByName } from "../controllers/directors_controller.js"
+import { createDirector, deactivateDirector, getDirectors, updateDirector, getDirectorByName, getDirectorById } from "../controllers/directors_controller.js"
 import Joi from "joi"
 import verifyToken from "../middlewares/auth.js"
 
@@ -28,6 +28,17 @@ route.get('/', (req, res) => {
 
 route.get('/:name', (req, res) => {
     let result = getDirectorByName(req)
+    result
+        .then((director) => {
+            res.status(200).json(director)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/:id', (req, res) => {
+    let result = getDirectorById(req)
     result
         .then((director) => {
             res.status(200).json(director)
