@@ -11,8 +11,8 @@ async function getUserByName(req) {
     return user
 }
 
-async function getUserById(req) {
-    let user = await User.findOne({ _id: ObjectId(req.params.id) })
+async function getUserById(id) {
+    let user = await User.findById(id)
     return user
 }
 

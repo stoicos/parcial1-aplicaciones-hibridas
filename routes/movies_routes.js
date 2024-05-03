@@ -29,24 +29,24 @@ route.get('/', (req, res) => {
         })
 })
 
-route.get('/:title', (req, res) => {
+route.get('/:id', (req, res) => {
     // console.log(req.params)
-    let result = getMovieByTitle(req)
+    let result = getMovieById(req)
     result
-        .then((movies) => {
-            res.status(200).json(movies)
+        .then((movie) => {
+            res.status(200).json(movie)
         })
         .catch((error) => {
             res.status(400).json(error)
         })
 })
 
-route.get('/:id', (req, res) => {
+route.get('/title/:title', (req, res) => {
     // console.log(req.params)
-    let result = getMovieById(req)
+    let result = getMovieByTitle(req)
     result
-        .then((movies) => {
-            res.status(200).json(movies)
+        .then((movie) => {
+            res.status(200).json(movie)
         })
         .catch((error) => {
             res.status(400).json(error)

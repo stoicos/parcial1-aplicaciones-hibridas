@@ -29,22 +29,22 @@ route.get('/', (req, res) => {
         })
 })
 
-route.get('/:name', (req, res) => {
-    let result = getUserByName(req);
+route.get('/:id', (req, res) => {
+    let result = getUserById(req.params.id);
     result
-        .then((users) => {
-            res.status(200).json(users)
+        .then((user) => {
+            res.status(200).json(user)
         })
         .catch((error) => {
             res.status(400).json(error)
         })
 })
 
-route.get('/:id', (req, res) => {
-    let result = getUserById(req);
+route.get('/name/:name', (req, res) => {
+    let result = getUserByName(req);
     result
-        .then((users) => {
-            res.status(200).json(users)
+        .then((user) => {
+            res.status(200).json(user)
         })
         .catch((error) => {
             res.status(400).json(error)

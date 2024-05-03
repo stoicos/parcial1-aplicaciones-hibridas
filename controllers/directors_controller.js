@@ -5,8 +5,8 @@ async function getDirectors() {
     return directors
 }
 
-async function getDirectorByName(req) {
-    let director = await Director.findOne({ name: { $regex: req.params.name, $options: 'i' } });
+async function getDirectorBySurname(req) {
+    let director = await Director.findOne({ surname: { $regex: req.params.surname, $options: 'i' } });
     return director
 }
 
@@ -45,4 +45,4 @@ async function deactivateDirector(id) {
     return deactivatedDirector
 }
 
-export { getDirectors, createDirector, updateDirector, deactivateDirector, getDirectorByName, getDirectorById }
+export { getDirectors, createDirector, updateDirector, deactivateDirector, getDirectorBySurname, getDirectorById }
