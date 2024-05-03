@@ -8,7 +8,7 @@ const route = express.Router()
 const schema = Joi.object({
     title: Joi.string()
                 .min(3)
-                .max(20),
+                .max(60),
     synopsis: Joi.string()
                 .min(3)
                 .max(200),
