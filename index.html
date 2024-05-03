@@ -41,6 +41,7 @@
             background-color: rgb(25, 25, 53);
             padding: 1rem;
             color: white;
+            text-align: center;
         }
         h1, h2, h3 {
             color: rgb(25, 25, 53);
@@ -69,11 +70,17 @@
     <div class="container">
         <h1>🎞Videoclub</h1>
         <h2 class="bajada">API de películas y directores de cine</h2>
-        <p class="subtitulo">Creada en Node Express y Mongo</p>
+        <p class="subtitulo">Creada en Node, Express y MongoDB</p>
         <p>Requiere una creación y autenticación de usuario para acceder a más funcionalidades</p>
         <p>Dentro de las funcionalidades que puede acceder el usuario está la creación, modificación y eliminación de documentos</p>
+        <h3>Empezar</h3>
+        <ul>
+            <li>$ npm i</li>
+            <li>$ npm start</li>
+        </ul>
         <h2>Lista de endpoints:</h2>
         <h3># Películas</h3>
+        <p>El id del director es necesario para crear peliculas en el caso de POST</p>
         <ul>
             <li><span class="verde">GET</span> 127.0.0.1:3000/movies/</li>
             <li><span class="amarillo">POST</span> 127.0.0.1:3000/movies/:id</li>
