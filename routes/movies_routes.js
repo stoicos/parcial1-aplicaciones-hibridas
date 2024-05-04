@@ -11,11 +11,11 @@ const schema = Joi.object({
                 .max(60),
     synopsis: Joi.string()
                 .min(3)
-                .max(200),
+                .max(1000),
     year: Joi.number(),
     cover: Joi.string()
                 .min(3)
-                .max(100)
+                .max(1000)
 })
 
 route.get('/', (req, res) => {
@@ -64,7 +64,7 @@ route.get('/pages/:pages', (req, res) => {
         })
 })
 
-route.get('/sort', (req, res) => {
+route.get('/sort/title', (req, res) => {
     let result = getSortedMovies()
     result
         .then((movies) => {
@@ -75,7 +75,7 @@ route.get('/sort', (req, res) => {
         })
 })
 
-route.get('/year', (req, res) => {
+route.get('/sort/year', (req, res) => {
     
     let minYear = Number(req.query.minyear)
     let maxYear = Number(req.query.maxyear)

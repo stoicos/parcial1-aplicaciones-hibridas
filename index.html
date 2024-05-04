@@ -82,6 +82,11 @@
         </ul>
         <h2>Autenticación</h2>
         <p>Ingresar con mail y password de un usuario existente para acceder a todas las funcionalidades. Usar jsonwebtoken con la llave 'auth'.</p>
+        <p>Usuario de ejemplo para loguearse:</p>
+        <ul class="lista">
+            <li>email: rober@gmail.com</li>
+            <li>password: rober</li>
+        </ul>
         <h2>Modelos</h2>
         <h3># Películas</h3>
         <ul>
@@ -116,11 +121,11 @@
         <ul class="lista">
             <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies</b> => Trae todas las peliculas</li>
             <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/:id</b> => Trae una pelicula por su ID</li>
-            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/pages/:pages</b> => Trae una determinada cantidad de películas</li>
-            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/sort</b> => Trae las películas ordenadas por su nombre</li>
-            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/year?minyear=1910&maxyear=1980</b> => Trae peliculas por un determinado rango de época</li>
             <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/title/:title</b> => Trae películas por su título</li>
-            <li><span class="amarillo">POST</span> <b>127.0.0.1:3000/movies/:id</b> => Crea una película</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/pages/:pages</b> => Trae una determinada cantidad de películas</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/sort/title</b> => Trae las películas ordenadas por su nombre</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/sort/year?minyear=1910&maxyear=1980</b> => Trae peliculas por un determinado rango de época</li>
+            <li><span class="amarillo">POST</span> <b>127.0.0.1:3000/movies/:id</b> => Crea una película según el ID del director</li>
             <li><span class="azul">PUT</span> <b>127.0.0.1:3000/movies/:id</b> => Modifica una película</li>
             <li><span class="rojo">DELETE</span> <b>127.0.0.1:3000/movies/:id</b> => Elimina una película</li>
         </ul>

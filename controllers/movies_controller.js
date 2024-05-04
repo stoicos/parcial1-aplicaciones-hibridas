@@ -15,10 +15,17 @@ async function getMovieByTitle(req) {
 }
 
 async function getMovieById(req) {
-    let movie = await Movie.findOne({ id : req.params.id })
+    let movie = await Movie.findOne({ _id : req.params.id })
         .find({ status: true })
         .populate('director', 'name surname -_id')
     return movie
+}
+
+async function getSortedMovies() {
+    let movies = await Movie.find().sort({ title: 1 })
+        .find({ status: true })
+        .populate('director', 'name surname -_id')
+    return movies
 }
 
 async function getMoviesByYearRange(min, max) {
@@ -26,13 +33,6 @@ async function getMoviesByYearRange(min, max) {
         .find({ status: true })
         .populate('director', 'name surname -_id')
     return movies
-}
-
-async function getSortedMovies() {
-    let movie = await Movie.find().sort({title: 1})
-        .find({ status: true })
-        .populate('director', 'name surname -_id')
-    return movie
 }
 
 async function getMoviesByPages(req) {

@@ -11,7 +11,7 @@ async function getDirectorBySurname(req) {
 }
 
 async function getDirectorById(req) {
-    let director = await Director.findOne({ id : req.params.id });
+    let director = await Director.findOne({ _id : req.params.id });
     return director
 }
 
