@@ -29,6 +29,30 @@ route.get('/', (req, res) => {
         })
 })
 
+route.get('/:id', (req, res) => {
+    // console.log(req.params)
+    let result = getMovieById(req)
+    result
+        .then((movie) => {
+            res.status(200).json(movie)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
+route.get('/title/:title', (req, res) => {
+    // console.log(req.params)
+    let result = getMovieByTitle(req)
+    result
+        .then((movie) => {
+            res.status(200).json(movie)
+        })
+        .catch((error) => {
+            res.status(400).json(error)
+        })
+})
+
 route.get('/pages/:pages', (req, res) => {
     let result = getMoviesByPages(req)
     result
@@ -40,7 +64,7 @@ route.get('/pages/:pages', (req, res) => {
         })
 })
 
-route.get('/year', (req, res) => {
+route.get('/sort', (req, res) => {
     let result = getSortedMovies()
     result
         .then((movies) => {
@@ -72,30 +96,6 @@ route.get('/year', (req, res) => {
                 res.status(400).json(error)
             })
     }
-})
-
-route.get('/:id', (req, res) => {
-    // console.log(req.params)
-    let result = getMovieById(req)
-    result
-        .then((movie) => {
-            res.status(200).json(movie)
-        })
-        .catch((error) => {
-            res.status(400).json(error)
-        })
-})
-
-route.get('/title/:title', (req, res) => {
-    // console.log(req.params)
-    let result = getMovieByTitle(req)
-    result
-        .then((movie) => {
-            res.status(200).json(movie)
-        })
-        .catch((error) => {
-            res.status(400).json(error)
-        })
 })
 
 route.post('/:id', verifyToken, (req, res) => {

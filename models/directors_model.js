@@ -1,10 +1,6 @@
 import mongoose from "mongoose"
 
 const directorsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: false
-    },
     surname: {
         type: String,
         required: true
@@ -16,6 +12,14 @@ const directorsSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         required: true
+    },
+    name: {
+        type: String,
+        required: false
+    },
+    bio: {
+        type: String,
+        required: false
     }
 })
 

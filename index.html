@@ -5,21 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videoclub</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
         *{
-            font-family: sans-serif;
+            font-family: "Ubuntu", sans-serif;
         }
         body{
+            margin: 0;
             background: #C8D8FF;
             background: -moz-radial-gradient(center, #C8D8FF 0%, #EBF2FF 60%, #FFFFFF 100%);
             background: -webkit-radial-gradient(center, #C8D8FF 0%, #EBF2FF 60%, #FFFFFF 100%);
             background: radial-gradient(ellipse at center, #C8D8FF 0%, #EBF2FF 60%, #FFFFFF 100%);
         }
-        ul {
+        .lista {
             background-color: white;
             border-radius: 1rem;
             padding: 1rem;
             margin: 1rem;
-            width: 30rem;
+            width: 35rem;
             list-style: none;
         }
         span {
@@ -68,38 +70,79 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎞Videoclub</h1>
+        <h1>🎬Videoclub</h1>
         <h2 class="bajada">API de películas y directores de cine</h2>
         <p class="subtitulo">Creada en Node, Express y MongoDB</p>
         <p>Requiere una creación y autenticación de usuario para acceder a más funcionalidades, la sesión durará una hora.</p>
         <p>Dentro de las funcionalidades que puede acceder el usuario está la creación, modificación y eliminación de documentos.</p>
         <h3>Empezar</h3>
-        <ul>
+        <ul class="lista">
             <li>$ npm i</li>
             <li>$ npm start</li>
         </ul>
-        <h2>Lista de endpoints:</h2>
+        <h2>Autenticación</h2>
+        <p>Ingresar con mail y password de un usuario existente para acceder a todas las funcionalidades. Usar jsonwebtoken con la llave 'auth'.</p>
+        <h2>Modelos</h2>
         <h3># Películas</h3>
-        <p>El id del director es necesario para crear peliculas en el caso de POST</p>
         <ul>
-            <li><span class="verde">GET</span> 127.0.0.1:3000/movies/</li>
-            <li><span class="amarillo">POST</span> 127.0.0.1:3000/movies/:id</li>
-            <li><span class="azul">PUT</span> 127.0.0.1:3000/movies/:id</li>
-            <li><span class="rojo">DELETE</span> 127.0.0.1:3000/movies/:id</li>
+            <li>Título => String</li>
+            <li>Sinopsis => String</li>
+            <li>Año => Number</li>
+            <li>Cover => String</li>
+            <li>Estado => Boolean</li>
+            <li>Score => Number</li>
+            <li>Director => ObjectId</li>
+            <li>Duration => Number</li>
         </ul>
         <h3># Directores</h3>
         <ul>
-            <li><span class="verde">GET</span> 127.0.0.1:3000/directors/</li>
-            <li><span class="amarillo">POST</span> 127.0.0.1:3000/directors/</li>
-            <li><span class="azul">PUT</span> 127.0.0.1:3000/directors/:id</li>
-            <li><span class="rojo">DELETE</span> 127.0.0.1:3000/directors/:id</li>
+            <li>Nombre => String</li>
+            <li>Apellido => String</li>
+            <li>Edad => Number</li>
+            <li>Biografía => String</li>
+            <li>Estado => Boolean</li>
         </ul>
         <h3># Usuarios</h3>
         <ul>
-            <li><span class="verde">GET</span> 127.0.0.1:3000/users/</li>
-            <li><span class="amarillo">POST</span> 127.0.0.1:3000/users/</li>
-            <li><span class="azul">PUT</span> 127.0.0.1:3000/users/:id</li>
-            <li><span class="rojo">DELETE</span> 127.0.0.1:3000/users/:id</li>
+            <li>Nombre => String</li>
+            <li>Email => String</li>
+            <li>Contraseña => String</li>
+            <li>Estado => Boolean</li>
+        </ul>
+        
+        <h2>Lista de endpoints:</h2>
+        <h3># Películas</h3>
+        <p>Un director es necesario para crear peliculas</p>
+        <ul class="lista">
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies</b> => Trae todas las peliculas</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/:id</b> => Trae una pelicula por su ID</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/pages/:pages</b> => Trae una determinada cantidad de películas</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/sort</b> => Trae las películas ordenadas por su nombre</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/year?minyear=1910&maxyear=1980</b> => Trae peliculas por un determinado rango de época</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/movies/title/:title</b> => Trae películas por su título</li>
+            <li><span class="amarillo">POST</span> <b>127.0.0.1:3000/movies/:id</b> => Crea una película</li>
+            <li><span class="azul">PUT</span> <b>127.0.0.1:3000/movies/:id</b> => Modifica una película</li>
+            <li><span class="rojo">DELETE</span> <b>127.0.0.1:3000/movies/:id</b> => Elimina una película</li>
+        </ul>
+        <h3># Directores</h3>
+        <p>El director puede tener muchas películas</p>
+        <ul class="lista">
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/directors</b> => Trae todos los directores</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/directors/:id</b> => Trae un director por su ID</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/directors/surname/:surname</b> => Trae directores por su apellido</li>
+            <li><span class="amarillo">POST</span> <b>127.0.0.1:3000/directors</b> => Crea un director</li>
+            <li><span class="azul">PUT</span> <b>127.0.0.1:3000/directors/:id</b> => Modifica un director</li>
+            <li><span class="rojo">DELETE</span> <b>127.0.0.1:3000/directors/:id</b> => Elimina un director</li>
+        </ul>
+        <h3># Usuarios</h3>
+        <p>Es necesario autenticarse con un usuario (duración de la sesión: 1 hora)</p>
+        <ul class="lista">
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/users</b> => Trae todos los usuarios</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/users/:id</b> => Trae un usuario por su ID</li>
+            <li><span class="verde">GET</span> <b>127.0.0.1:3000/users/name/:name</b> => Trae usuarios por su nombre</li>
+            <li><span class="amarillo">POST</span> <b>127.0.0.1:3000/users</b> => Crea un usuario</li>
+            <li><span class="azul">PUT</span> <b>127.0.0.1:3000/users/:id</b> => Modifica un usuario</li>
+            <li><span class="rojo">DELETE</span> <b>127.0.0.1:3000/users/:id</b> => Elimina un usuario</li>
         </ul>
 
     </div>

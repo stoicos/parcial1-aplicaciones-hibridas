@@ -11,10 +11,6 @@ const moviesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cover: {
-        type: String,
-        required: false
-    },
     director: {
         type: Schema.Types.ObjectId, ref: 'directors'
     },
@@ -25,6 +21,18 @@ const moviesSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         required: true
+    },
+    cover: {
+        type: String,
+        required: false
+    },
+    score: {
+        type: Number,
+        required: false
+    },
+    duration: {
+        type: Number,
+        required: false
     }
 })
 

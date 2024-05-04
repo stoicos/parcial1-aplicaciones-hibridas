@@ -26,8 +26,8 @@ route.get('/', (req, res) => {
         })
 })
 
-route.get('/surname/:surname', (req, res) => {
-    let result = getDirectorBySurname(req)
+route.get('/:id', (req, res) => {
+    let result = getDirectorById(req)
     result
         .then((director) => {
             res.status(200).json(director)
@@ -37,8 +37,8 @@ route.get('/surname/:surname', (req, res) => {
         })
 })
 
-route.get('/:id', (req, res) => {
-    let result = getDirectorById(req)
+route.get('/surname/:surname', (req, res) => {
+    let result = getDirectorBySurname(req)
     result
         .then((director) => {
             res.status(200).json(director)
